@@ -20,7 +20,7 @@ A high-performance monitoring solution for iLO and iDRAC server power consumptio
 
 ## Overview
 
-Server Power Monitor provides real-time power consumption tracking for enterprise server infrastructure through HP iLO and Dell iDRAC interfaces.
+Server Wattman provides real-time power consumption tracking for your server infrastructure through HP iLO and Dell iDRAC interfaces.
 
 ## Features
 
@@ -54,32 +54,32 @@ Server Power Monitor provides real-time power consumption tracking for enterpris
 ### Installation
 
 1. Clone and setup:
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/server-power-monitor.git
 cd server-power-monitor
 npm install
-\`\`\`
+```
 
 2. Configure environment:
-\`\`\`bash
+```bash
 cp .env.example .env
 chmod +x scripts/setup-dev.sh
 ./scripts/setup-dev.sh
-\`\`\`
+```
 
 ### Configuration
 
-Create a \`.env\` file:
-\`\`\`bash
+Create a `.env` file:
+```env
 API_KEY=your-secure-api-key
 REDIS_URL=redis://redis:6379
 SERVER_CONFIGS_PATH=/path/to/config.json
 DOMAINS=yourdomain.com
 STAGE=production
-\`\`\`
+```
 
 Configure servers in JSON:
-\`\`\`json
+```json
 {
   "servers": [
     {
@@ -91,21 +91,21 @@ Configure servers in JSON:
     }
   ]
 }
-\`\`\`
+```
 
 ## API Documentation
 
 ### Authentication
-API endpoints require an API key in the \`X-API-Key\` header:
-\`\`\`bash
+API endpoints require an API key in the `X-API-Key` header:
+```bash
 curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
-\`\`\`
+```
 
 ### Endpoints
 
 #### Health Check
-\`GET /api/health\`
-\`\`\`json
+`GET /api/health`
+```json
 {
   "status": "healthy",
   "timestamp": "2025-02-09T20:52:23.000Z",
@@ -118,11 +118,11 @@ curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
     }
   }
 }
-\`\`\`
+```
 
 #### Server Power Data
-\`GET /api/servers/{serverId}/power\`
-\`\`\`json
+`GET /api/servers/{serverId}/power`
+```json
 {
   "serverId": "server1",
   "timestamp": "2025-02-09T20:52:23.000Z",
@@ -130,7 +130,7 @@ curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
   "averagePower": 115,
   "peakPower": 150
 }
-\`\`\`
+```
 
 ## Security
 
@@ -143,7 +143,7 @@ curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
 
 ## Monitoring
 
-- Health check endpoint at \`/api/health\`
+- Health check endpoint at `/api/health`
 - Redis health monitoring (10s interval)
 - Memory usage tracking
 - Response time monitoring
@@ -152,7 +152,7 @@ curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
 ## Troubleshooting
 
 1. **Redis Connection Failed**
-   - Check: \`docker compose ps\`
+   - Check: `docker compose ps`
    - Verify Redis URL in .env
 
 2. **iLO/iDRAC Connection Timeout**
@@ -163,9 +163,9 @@ curl -H "X-API-Key: your-api-key" https://your-domain.com/api/health
    - Adjust RATE_LIMIT settings in .env
 
 Debug mode:
-\`\`\`bash
+```bash
 DEBUG=true npm run dev
-\`\`\`
+```
 
 ## Contributing
 
